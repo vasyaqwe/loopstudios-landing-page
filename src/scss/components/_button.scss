@@ -1,0 +1,22 @@
+@use '../base' as *;
+
+.btn {
+    border: 0;
+    background-color: transparent;
+}
+
+.btn--seeall {
+    cursor: pointer;
+    border: 2px solid var(--clr-primary-400);
+    color: black;
+    letter-spacing: 0.35rem;
+    font-family: var(--ff-secondary);
+    padding: 0.5em 2em;
+
+    &:hover,
+    :focus {
+        background-color: black;
+        color: white;
+        border-color: black;
+    }
+}

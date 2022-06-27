@@ -1,0 +1,172 @@
+@use 'base' as *;
+@use 'components' as *;
+
+
+.section--hero {
+    margin: 3.5rem 0;
+
+    &__heading {
+        font-size: 1.9rem;
+        margin-bottom: 1rem;
+    }
+
+    &__p {
+        font-family: var(--ff-secondary);
+        color: var(--clr-primary-200);
+        line-height: 1.6;
+    }
+
+    &__box {
+        margin-top: 2.5rem;
+    }
+
+}
+
+.section--creations {
+    margin-bottom: 3rem;
+    display: grid;
+    gap: 1rem;
+
+    &__heading {
+        font-size: 1.9rem;
+    }
+
+    &__btn {
+        grid-row: 11;
+        justify-self: center;
+    }
+
+    @for $i from 1 through 8 {
+        &__item:nth-of-type(#{$i}) {
+            cursor: pointer;
+            height: 150px;
+            background: url('../../images/mobile/#{$i}.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+
+            &::before {
+                content: '';
+                z-index: -1;
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg,
+                        rgb(0 0 0 / 0.5),
+                        rgb(0 0 0 / 0))
+            }
+
+            &:hover::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg,
+                        rgba(255, 255, 255, 0.7),
+                        rgba(255, 255, 255, 0.7))
+            }
+
+            &:hover h3 {
+                color: black;
+                transform: translateX(8%);
+            }
+
+            h3 {
+                z-index: 100;
+                font-size: 1.6rem;
+                max-width: 150px;
+                text-align: start;
+                line-height: 1.1;
+                position: absolute;
+                color: white;
+                bottom: 20%;
+                left: 7%;
+                transition: all 0.3s cubic-bezier(.77, 0, .18, 1);
+            }
+        }
+    }
+
+}
+
+
+@media (min-width: 732px) {
+    .section--creations {
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: 8rem;
+
+        @media (min-width: 1260px) {
+            row-gap: 2rem;
+            column-gap: 2.8rem;
+        }
+
+        &__heading {
+            font-size: 2.4rem;
+            grid-row: 1;
+            grid-column: 1/4;
+            margin-bottom: 2rem;
+        }
+
+        &__btn {
+            grid-row: 1;
+            grid-column: 4;
+            justify-self: end;
+            align-self: end;
+            margin-bottom: 2rem;
+
+        }
+
+        @for $i from 1 through 8 {
+            &__item:nth-of-type(#{$i}) {
+                background: url('../../images/desktop/#{$i}.jpg');
+                background-repeat: no-repeat;
+                height: 400px;
+
+                &::before {
+                    background: linear-gradient(180deg,
+                            rgb(0 0 0 / 0.3),
+                            rgb(0 0 0 / 0.4))
+                }
+
+                h3 {
+                    font-size: 2rem;
+                    max-width: 170px;
+                    text-align: start;
+                    line-height: 1;
+                    position: absolute;
+                    color: white;
+                    bottom: 8%;
+                    left: 12%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 782px) {
+    .section--hero {
+        margin: 3.5rem 0;
+        position: relative;
+
+        &__heading {
+            margin-bottom: 1rem;
+            font-size: clamp(3vw, 5%, 2rem);
+        }
+
+        &__p {
+            font-family: var(--ff-secondary);
+            color: var(--clr-primary-200);
+            line-height: 1.6;
+        }
+
+        &__box {
+            margin-top: 2.5rem;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            padding: min(4vw, 5em) min(4vw, 5em) 0 min(4vw, 4em);
+        }
+
+    }
+}
